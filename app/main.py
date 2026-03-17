@@ -1,11 +1,13 @@
 from fastapi import FastAPI
+from app.config import APP_VERSION
+from app.info import get_health_payload, get_version_payload
 
 app = FastAPI()
 
 
 @app.get("/health")
 def health_check():
-    return {"status": "ok"}
+    return get_health_payload()
 @app.get("/version")
 def get_version():
-    return {"version":"0.1.0"}
+    return get_version_payload(APP_VERSION)
